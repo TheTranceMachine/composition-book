@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import '../semantic/dist/semantic.min.css'
+import '../semantic/dist/semantic.min.js'
 
 Vue.config.productionTip = false
 
