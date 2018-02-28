@@ -5,6 +5,10 @@ import App from './App'
 import router from './router'
 import '../semantic/dist/semantic.min.css'
 import '../semantic/dist/semantic.min.js'
+import lodash from 'lodash'
+import VueLodash from 'vue-lodash'
+
+Vue.use(VueLodash, lodash)
 
 Vue.config.productionTip = false
 

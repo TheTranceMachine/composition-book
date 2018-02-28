@@ -22,6 +22,9 @@ export default {
   mounted: function () {
     $('#cb-dropdown-multiple--gender').dropdown()
     toastr.success('Welcome to Composition book!')
+    var numbers = [1, 2, 3]
+    var array = this._.isArray(numbers)
+    console.log(array)
   }
 }
 </script>
