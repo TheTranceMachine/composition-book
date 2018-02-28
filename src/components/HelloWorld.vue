@@ -5,11 +5,12 @@
       <option value="1">Male</option>
       <option value="0">Female</option>
     </select>
+    <button class="ui button">Follow</button>
   </div>
 </template>
 
 <script>
-
+import toastr from 'toastr'
 var $ = require('jquery')
 
 export default {
@@ -20,11 +21,16 @@ export default {
   },
   mounted: function () {
     $('#cb-dropdown-multiple--gender').dropdown()
+    toastr.success('Welcome to Composition book!')
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
+<style scoped lang="scss">
+  .hello_world {
+    .ui.button {
+      background-color: red;
+    }
+  }
 </style>
