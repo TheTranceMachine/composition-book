@@ -5,9 +5,11 @@ import App from './App'
 import router from './router'
 import '../semantic/dist/semantic.min.css'
 import '../semantic/dist/semantic.min.js'
+import VueFire from 'vuefire'
 import lodash from 'lodash'
 import VueLodash from 'vue-lodash'
 
+Vue.use(VueFire)
 Vue.use(VueLodash, lodash)
 
 Vue.config.productionTip = false

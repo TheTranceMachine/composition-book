@@ -1,5 +1,20 @@
 <template>
   <div class="hello_world">
+    <div class="ui two column centered grid">
+      <div class="eight wide column" v-for="project in projects" v-bind:key="project.title">
+        <div class="ui raised segments">
+          <div class="ui inverted segment">
+            <p>{{ project.title }}</p>
+          </div>
+          <div class="ui segment">
+            <p>Author: {{ project.author }}</p>
+          </div>
+          <div class="ui segment">
+            <p>Description: {{ project.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
     <select class="ui dropdown" multiple="" id="cb-dropdown-multiple--gender">
       <option value="">Gender</option>
       <option value="1">Male</option>
@@ -10,6 +25,7 @@
 </template>
 
 <script>
+import { firebaseProjects } from 'firebase-config'
 import toastr from 'toastr'
 var $ = require('jquery')
 
@@ -18,6 +34,9 @@ export default {
   data () {
     return {
     }
+  },
+  firebase: {
+    projects: firebaseProjects
   },
   mounted: function () {
     $('#cb-dropdown-multiple--gender').dropdown()
