@@ -1,10 +1,10 @@
 # composition-book
 
 Demonstrate a basic setup of Vue and Firebase. Should include the following:
-- Email Authentication with Firebase
-- Firestore Database with VueFire wrapper
-- Environment variables
-- Firebase Storage integration
+- [Email Authentication with Firebase](https://github.com/TheTranceMachine/composition-book#basic-email-authentication-with-firebase)
+- [Firestore Database with VueFire wrapper](https://github.com/TheTranceMachine/composition-book#install-vuefire-and-create-firestore-database)
+- [Environment variables](https://github.com/TheTranceMachine/composition-book#obscure-sdk-variables)
+- Firebase Storage integration (TBD)
 
 ## Quick Start tutorial.
 
