@@ -83,7 +83,7 @@ import ToDoList from './ToDoList.vue'
 </template>
 ```
 
-# Obscure SDK variables
+## Obscure SDK variables
 
 [Env Variables and Modes | Vite (vitejs.dev)](https://vitejs.dev/guide/env-and-mode.html)
 
