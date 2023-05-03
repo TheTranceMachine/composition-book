@@ -1,28 +1,18 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-import { useFirestore , useCollection } from 'vuefire'
-import { collection } from 'firebase/firestore'
-
-const db = useFirestore()
-const todos = useCollection(collection(db, 'todos'))
+import ToDoList from './components/ToDoList.vue'
 </script>
 
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-    <ul>
-      <li v-for="todo in todos" :key="todo.id">
-      <span>{{ todo.name }}</span>
-      </li>
-    </ul>
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
     </div>
   </header>
 
   <main>
-    <TheWelcome />
+    <ToDoList />
   </main>
 </template>
 
