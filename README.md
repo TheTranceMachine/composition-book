@@ -83,6 +83,30 @@ import ToDoList from './ToDoList.vue'
 </template>
 ```
 
+# Obscure SDK variables
+
+[Env Variables and Modes | Vite (vitejs.dev)](https://vitejs.dev/guide/env-and-mode.html)
+
+1. Create `.env` file in the root of the app
+2. Create ENV variables for configuration variables. Each key should start with `VITE_`. Example:
+```
+VITE_APIKEY=123
+```
+3. Add reference to your newly created env. variables in `src/firebase`:
+```
+const {
+  VITE_APIKEY,
+  ...
+} = import.meta.env
+```
+5. Replace key values in `src/firebase` with env. variables. Example:
+```
+export const firebaseApp = initializeApp({
+  apiKey: VITE_APIKEY,
+  ...
+  })
+```
+
 
 ## Recommended IDE Setup
 
