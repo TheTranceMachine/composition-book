@@ -1,18 +1,72 @@
 # composition-book
 
 Demonstrate a basic setup of Vue and Firebase. Should include the following:
-- Email Authentication
-- Firestore integration
-- Storage integration
+- Email Authentication with Firebase
+- Firestore Database with VueFire wrapper
+- Environment variables
+- Firebase Storage integration
 
-
-This is Vue.js Quick Start tutorial.
+## Quick Start tutorial.
 
 [Quick start](https://vuejs.org/guide/quick-start.html#creating-a-vue-application)
-1. `npm init vue@latest`
-2. `cd <your-project-name>`
-3. `npm install`
-4. `npm run dev`
+  ```
+    npm init vue@latest
+    cd <your-project-name>
+  ```
+## Recommended IDE Setup
+
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
+## Customize configuration
+
+See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Compile and Minify for Production
+
+```sh
+npm run build
+```
+
+### Run Headed Component Tests with [Cypress Component Testing](https://on.cypress.io/component)
+
+```sh
+npm run test:unit:dev # or `npm run test:unit` for headless testing
+```
+
+### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+
+```sh
+npm run test:e2e:dev
+```
+
+This runs the end-to-end tests against the Vite development server.
+It is much faster than the production build.
+
+But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
+
+```sh
+npm run build
+npm run test:e2e
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
+```
+
 
 ## Install Firebase
 
@@ -28,7 +82,7 @@ These steps demonstrate how to install Firebase and Firestore DB in your Vue pro
 	3. back in your project, create a new file under `/src` called `firebase` without any extension
 	4. paste previously copied code into the newly created file
 
-## Install VueFire
+## Install VueFire and Create Firestore Database
 
 [Vuefire](https://vuefire.vuejs.org/) is a lightweight wrapper that handles realtime binding between Vue/Vuex and Firebase databases, such as real-time databases or Cloud Firestore. It has some inbuilt logic that always keeps local data in sync with remote Firebase databases.
 
@@ -50,6 +104,22 @@ export const todosRef = collection(db, 'todos')
 ```
 3. Create [Firestore Database](https://console.firebase.google.com/project/presentation-8d4b4/firestore)
 4. Click on "Start collection" under "Panel view" when the Database is created. Collection ID is your DB name. In this example it's "todos". You should also add the first key and value. If your DB name is different, replace 'todos' in the above example wqith your own name.
+5. Replace contents of `src/main.js` with the following snippet:
+```
+import { createApp } from 'vue'
+import { VueFire } from 'vuefire'
+import App from './App.vue'
+import { firebaseApp } from './firebase'
+
+const app = createApp(App)
+app
+  .use(VueFire, {
+    firebaseApp,
+    modules: [],
+  })
+
+app.mount('#app')
+```
 
 ## Retrieve a reactive collection from Firestore
 
@@ -107,57 +177,54 @@ export const firebaseApp = initializeApp({
   })
 ```
 
+## Basic Email Authentication with Firebase
 
-## Recommended IDE Setup
+[Firebase Authentication](https://console.firebase.google.com/project/composition-book/authentication/providers)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+1. Enable Email/Password as your Sign-in provider. Click Save.
+2. Select "Users" tab and click "Add user". Add Email address and password.
+3. Follow [VueFire Authentication installation tutorial](https://vuefire.vuejs.org/guide/auth.html). Edit `src/main.js`:
+	1. Import `VueFireAuth` from *vuefire*.
+	2. Add `VueFireAuth()` into modules
 ```
+import { createApp } from 'vue'
+import { VueFire, VueFireAuth } from 'vuefire'
+import App from './App.vue'
+import { firebaseApp } from './firebase'
 
-### Compile and Hot-Reload for Development
+const app = createApp(App)
+app
+  .use(VueFire, {
+    firebaseApp,
+    modules: [
+      VueFireAuth(),
+    ],
+  })
 
-```sh
-npm run dev
+app.mount('#app')
 ```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
+4. Follow [Firebase docs](https://firebase.google.com/docs/auth/web/password-auth#sign_in_a_user_with_an_email_address_and_password). Create a new file `src/SignIn.vue` and add this snippet as content:
 ```
+<script setup>
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { useCurrentUser } from 'vuefire'
 
-### Run Headed Component Tests with [Cypress Component Testing](https://on.cypress.io/component)
+const user = useCurrentUser()
+const auth = getAuth()
+const email = <email>
+const password = <password>
 
-```sh
-npm run test:unit:dev # or `npm run test:unit` for headless testing
+signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    console.log(userCredential.user)
+  })
+  .catch((error) => {
+    console.log(error.code)
+    console.log(error.message)
+  })
+</script>
+<template>
+  <p v-if="user">Hello {{ user.email }}</p>
+</template>
 ```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+5. Replace *email* nad *password* with the credentials from Firebase newly created user. Import "SignIn" component to `App.vue` and render it. If the credentials are correct, you will see a greeting.  Otherwise, the greeting won't be displayed.

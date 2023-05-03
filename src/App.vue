@@ -1,6 +1,7 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import ToDoList from './components/ToDoList.vue'
+import SignIn from './components/SignIn.vue'
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import ToDoList from './components/ToDoList.vue'
   </header>
 
   <main>
+    <SignIn />
     <ToDoList />
   </main>
 </template>
