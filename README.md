@@ -227,3 +227,23 @@ signInWithEmailAndPassword(auth, email, password)
 </template>
 ```
 5. Replace *email* nad *password* with the credentials from Firebase newly created user. Import "SignIn" component to `App.vue` and render it. If the credentials are correct, you will see a greeting.  Otherwise, the greeting won't be displayed.
+
+## Firebase Storage
+
+1. Go to [Firebase Storage](https://console.firebase.google.com/project/composition-book/storage) and click "Get Started" button. Choose between *production mode* and *test mode*.
+2. Edit `src/firebase`, import *getStorage* from *firebase/storage*, then initialize Cloud Storage and get a reference to the service.
+```
+import { getStorage } from "firebase/storage"
+...
+const storage = getStorage(app)
+```
+3. Go to [VueFire FileUpload example](https://vuefire.vuejs.org/guide/storage.html) and copy the provided snippet to [Upload files](https://vuefire.vuejs.org/guide/storage.html#uploading-files) a new file `src/StorageUpload.vue`. Import this file in `App.vue` and render it.
+4. Display your image on the page with the following line of code reading image URL if tit exists
+```
+<img v-if="url" :src="url" />
+```
+5. Install [VueUse](https://vueuse.org/guide) as this example uses file upload composition utility
+```
+npm i @vueuse/core --save
+```
+
