@@ -126,10 +126,9 @@ app.mount('#app')
 1. Copy the following snippet and paste into a newly created file called `ToDoList.vue` under `src/components` :
 ```
 <script setup>
-import { useFirestore , useCollection } from 'vuefire'
+import { useCollection } from 'vuefire'
 import { todosRef } from '../firebase'
 
-const db = useFirestore()
 const todos = useCollection(todosRef)
 </script>
 <template>

@@ -2,6 +2,7 @@
 import HelloWorld from './components/HelloWorld.vue'
 import ToDoList from './components/ToDoList.vue'
 import SignIn from './components/SignIn.vue'
+import StorageUpload from './components/StorageUpload.vue'
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import SignIn from './components/SignIn.vue'
   <main>
     <SignIn />
     <ToDoList />
+    <StorageUpload />
   </main>
 </template>
 

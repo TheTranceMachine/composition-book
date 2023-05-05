@@ -1,8 +1,7 @@
 <script setup>
-import { useFirestore , useCollection } from 'vuefire'
+import { useCollection } from 'vuefire'
 import { todosRef } from '../firebase'
 
-const db = useFirestore()
 const todos = useCollection(todosRef)
 </script>
 <template>
