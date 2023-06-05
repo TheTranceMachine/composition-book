@@ -3,6 +3,7 @@ import HelloWorld from './components/HelloWorld.vue'
 import ToDoList from './components/ToDoList.vue'
 import SignIn from './components/SignIn.vue'
 import StorageUpload from './components/StorageUpload.vue'
+import MonacoEditor from './components/MonacoEditor.vue'
 </script>
 
 <template>
@@ -17,6 +18,7 @@ import StorageUpload from './components/StorageUpload.vue'
     <SignIn />
     <ToDoList />
     <StorageUpload />
+    <MonacoEditor />
   </main>
 </template>
 
