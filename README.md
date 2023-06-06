@@ -252,3 +252,6 @@ https://github.com/TheTranceMachine/composition-book/commit/64e85af13fa35b22c302
 ## Monaco Editor integration - save editor content to Firebase Storage on every edit
 https://github.com/TheTranceMachine/composition-book/commit/5e05628a91470be00864bcc192b8b6f9a713c1a4
 
+## Monaco Editor - add CORS and fetch editor content from Firebase Storage
+https://github.com/TheTranceMachine/composition-book/commit/982f834d4f92da8be5c4603433ece2c8e377f9a9
+
