@@ -247,3 +247,8 @@ const storage = getStorage(app)
 npm i @vueuse/core --save
 ```
 
+## Monaco Editor integration
+https://github.com/TheTranceMachine/composition-book/commit/64e85af13fa35b22c3020efc96cda5feb391121e
+## Monaco Editor integration - save editor content to Firebase Storage on every edit
+https://github.com/TheTranceMachine/composition-book/commit/5e05628a91470be00864bcc192b8b6f9a713c1a4
+
